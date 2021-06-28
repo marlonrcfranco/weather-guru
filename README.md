@@ -290,6 +290,11 @@ We use the cross validation score to measure the accuracy of our model.
 <span class="n">results</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">encoded_Y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kfold</span><span class="p">)</span>
 </pre></div>
 
+See details of the training in the notebook: 
+<a href="https://colab.research.google.com/github/marlonrcfranco/weather-guru/blob/main/weather_guru.ipynb">
+   <img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/>
+</a>
+
 # Final Results
 **'Accuracy: 85.73% (0.12%)'**
 
