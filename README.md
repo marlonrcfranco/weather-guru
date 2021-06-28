@@ -130,7 +130,7 @@ dtypes: float64(16), object(7)
 ### Convert wind Cardinal directions (string) to Degrees (float)
 Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In order to make the dataset only with numbers, let's convert these directions into angles (degrees).
 
-#### Before:
+#### Before (row 0):
 <table border="1" class="dataframe">
   <thead>
     <tr>
@@ -154,7 +154,7 @@ Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In o
 <span class="n">weather_df</span><span class="p">[</span><span class="s1">'WindDir9am'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="p">[</span><span class="s1">'WindDir9am'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">portolan</span><span class="o">.</span><span class="n">middle</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">!=</span><span class="s1">'nan'</span> <span class="k">else</span> <span class="n">w</span><span class="p">)</span>
 <span class="n">weather_df</span><span class="p">[</span><span class="s1">'WindDir3pm'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="p">[</span><span class="s1">'WindDir3pm'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">portolan</span><span class="o">.</span><span class="n">middle</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">!=</span><span class="s1">'nan'</span> <span class="k">else</span> <span class="n">w</span><span class="p">)</span>
 </pre>
-#### After:
+#### After (row 0):
 <table border="1" class="dataframe">
   <thead>
     <tr>
@@ -173,5 +173,15 @@ Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In o
     </tr>
   </tbody>
 </table>
+
+### Map the values 'Yes' and 'No' to 1 and 0
+<div class=" highlight hl-python"><pre><span></span><span class="n">weather_df</span><span class="o">.</span><span class="n">RainToday</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">RainToday</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">Yes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">No</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">Yes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">No</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+
+
+
+
+
 
 `TODO: Describe here which techiniques were used and why.`
