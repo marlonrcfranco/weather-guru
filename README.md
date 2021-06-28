@@ -194,6 +194,10 @@ In order to catch ciclic behaviours, we can feed the model with the day, month a
 ### Add latitude and longitude columns
 In order to convert the Locations into numbers, we can use the coordinates for each one.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/marlonrcfranco/weather-guru/main/img/aus_rain_observations.png">
+</p>
+
 
 
 
