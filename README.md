@@ -31,9 +31,24 @@
   * [Columns](#columns)
   * [Convert wind Cardinal directions (string) to Degrees (float)](#wind)
   * [Map the values 'Yes' and 'No' to 1 and 0](#boolean)
+  * [Split the Date into year, month and day columns](#date)
+  * [Add latitude and longitude columns based on column 'Location'](#lat)
+    * [Map of all locations in the dataset](#map) 
+* [Data Cleaning](#data_cleaning)
+  * [Remove rows with null values in the target column](#null_target)
+  * [Filling missing values](#fill)
+  * [Correlation](#correlation)
+* [Feature engineering](#feature_engineering)
+  * [Normalize features](#norm)
+  * [Split into input and outputs](#split)
   * [Sample](#sample)
   * [Sample](#sample)
   * [Sample](#sample)
+  * [Sample](#sample)
+  * [Sample](#sample)
+  * [Sample](#sample)
+  * [Sample](#sample)
+  * 
 
 ****
 
@@ -206,6 +221,7 @@ Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In o
 <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">Yes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">No</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 
+<a name="date"/></a>
 ### Split the Date into year, month and day columns
 In order to catch ciclic behaviours, we can feed the model with the day, month and year separately and allow it to perceive patterns related to seasons, for example.
 
@@ -214,6 +230,7 @@ In order to catch ciclic behaviours, we can feed the model with the day, month a
 <span class="n">weather_df</span><span class="p">[</span><span class="s1">'day'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
 </pre></div>
 
+<a name="lat"/></a>
 ### Add latitude and longitude columns based on column 'Location'
 The 'Location' column contains `string` values with the name of the location where the data was colected.
 In order to convert the locations into numbers, we can use the coordinates for each one. 
@@ -222,11 +239,16 @@ With this aproach, the column 'Location' becomes three new columns: **latitude**
 Example: location `Albury` becomes latitude `-36.0804766`, lngitude `146.9162795` and altitude `0.0`.
 
 **We could also plot the map of all the locations in the dataset, with its respective rainfall per day:**
+
+<a name="map"/></a>
 <p align="center">
   <img src="https://raw.githubusercontent.com/marlonrcfranco/weather-guru/main/img/aus_rain_observations.png">
 </p>
 
+<a name="data_cleaning"/></a>
 ## Data Cleaning
+
+<a name="null_target"/></a>
 ### Remove rows with null values in the target column
 If there's no value in the target column, we cannot use it into our training or test set. So we can remove those rows from the dataset.
 
@@ -243,6 +265,7 @@ Length: 2, dtype: Int64
  Total number of rows: [ 142193 ] ( 3267  rows removed )
 </pre>
 
+<a name="fill"/></a>
 ### Filling missing values
 In this step, we use the 'mean' strategy to fill the missing values of the features.
 
@@ -255,7 +278,7 @@ In this step, we use the 'mean' strategy to fill the missing values of the featu
 <span class="n">weather_df</span> <span class="o">=</span> <span class="n">weather_df_transformed</span>
 </pre></div>
 
-
+<a name="correlation"/></a>
 ### Correlation
 
 <p align="center">
@@ -264,13 +287,17 @@ In this step, we use the 'mean' strategy to fill the missing values of the featu
 
 There are some correlation in the dataset. Enough to proceed with the work.
 
+<a name="feature_engineering"/></a>
 ## Feature engineering
+
+<a name="norm"/></a>
 ### Normalize features
 The MinMaxScaler puts the values between 0 and 1, which further improves the model performance.
 <div class=" highlight hl-python"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">values</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
 </pre></div>
 
+<a name="split"/></a>
 ### Split into input and outputs
 X = features
 
