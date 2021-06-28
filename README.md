@@ -42,7 +42,7 @@
   * [Normalize features](#norm)
   * [Split into input and outputs](#split)
   * [Encode class values as integers](#encode)
-* [Design the model](#design)
+* [🤖 Design the model](#design)
   * [EPOCHS](#EPOCHS)
   * [BATCH_SIZE](#BATCH_SIZE)
   * [K_FOLD_SPLITS](#K_FOLD_SPLITS)
@@ -50,8 +50,8 @@
   * [LEARNING_RATE](#LEARNING_RATE)
   * [NEURONS_1](#NEURONS_1)
   * [NEURONS_2](#NEURONS_2)
-* [Train the model and validate it](#train)
-* [Final Results](#result)
+* [🧠 Train the model and validate it](#train)
+* [🏆 Final Results](#result)
 
 
 ****
@@ -323,7 +323,7 @@ Y = target
 </pre></div>
 
 <a name="design"/></a>
-## Design the model
+## 🤖 Design the model
 We want to predict a boolean value ('Yes' or 'No') for the target variable RainTomorrow. In this case, we need to use a **classification model**, istead of a **regression model**, which is used to predict real-world values (e.g. Rainfall).
 
 <div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">create_model</span><span class="p">():</span>
@@ -379,7 +379,7 @@ The number of neurons in the first hidden layer.
 The values 7 was chosen to 'force' the model to choose the most relevant features
 
 <a name="train"/></a>
-## Train the model and validate it
+## 🧠 Train the model and validate it
 We use the cross validation score to measure the accuracy of our model.
 <div class=" highlight hl-python"><pre><span></span><span class="n">kfold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">K_FOLD_SPLITS</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -394,7 +394,7 @@ See details of the training in the notebook:
 </a>
 
 <a name="result"/></a>
-# Final Results
+# 🏆 Final Results
 **'Accuracy: 85.73% (0.12%)'**
 
 This is the final **result of model accuracy**, after cross-validation scoring.
