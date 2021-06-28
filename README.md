@@ -179,6 +179,21 @@ Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In o
 <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">Yes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">No</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 
+### Add YEAR, MONTH and DAY columns
+In order to catch ciclic behaviours, we can feed the model with the day, month and year separately and allow it to perceive patterns related to seasons, for example.
+
+<div class=" highlight hl-python"><pre><span></span><span class="n">weather_df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">weather_df</span><span class="p">[</span><span class="s1">'month'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">weather_df</span><span class="p">[</span><span class="s1">'day'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
+
+<span class="c1"># Drop the Date column</span>
+<span class="c1"># It is now replaced by year, month and day columns</span>
+<span class="n">weather_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'Date'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+### Add latitude and longitude columns
+In order to convert the Locations into numbers, we can use the coordinates for each one.
+
 
 
 
