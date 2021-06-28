@@ -195,7 +195,8 @@ In order to catch ciclic behaviours, we can feed the model with the day, month a
 The 'Location' column contains `string` values with the name of the location where the data was colected.
 In order to convert the locations into numbers, we can use the coordinates for each one. 
 With this aproach, the column 'Location' becomes three new columns: **latitude**, **longitude** and **altitude** (all in decimal degrees).
-Example: Albury -> (-36.0804766, 146.9162795, 0.0)
+
+Example: location `Albury` becomes latitude `-36.0804766`, lngitude `146.9162795` and altitude `0.0`.
 
 **We could also plot the map of all the locations in the dataset, with its respective rainfall per day:**
 <p align="center">
