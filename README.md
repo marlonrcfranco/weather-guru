@@ -179,7 +179,7 @@ Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In o
 <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">Yes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">No</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 
-### Add YEAR, MONTH and DAY columns
+### Add YEAR, MONTH and DAY columns based on column 'Date'
 In order to catch ciclic behaviours, we can feed the model with the day, month and year separately and allow it to perceive patterns related to seasons, for example.
 
 <div class=" highlight hl-python"><pre><span></span><span class="n">weather_df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
@@ -191,9 +191,13 @@ In order to catch ciclic behaviours, we can feed the model with the day, month a
 <span class="n">weather_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'Date'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
-### Add latitude and longitude columns
-In order to convert the Locations into numbers, we can use the coordinates for each one.
+### Add latitude and longitude columns based on column 'Location'
+The 'Location' column contains `string` values with the name of the location where the data was colected.
+In order to convert the locations into numbers, we can use the coordinates for each one. 
+With this aproach, the column 'Location' becomes three new columns: **latitude**, **longitude** and **altitude** (all in decimal degrees).
+Example: Albury -> (-36.0804766, 146.9162795, 0.0)
 
+**We could also plot the map of all the locations in the dataset, with its respective rainfall per day:**
 <p align="center">
   <img src="https://raw.githubusercontent.com/marlonrcfranco/weather-guru/main/img/aus_rain_observations.png">
 </p>
