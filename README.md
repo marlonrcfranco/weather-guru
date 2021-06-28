@@ -20,38 +20,44 @@
   </a>
 </p>
 
-# Table of Contents
+****
 
 * [Intro](#intro)
   * [Goal](#goal)
   * [Dataset](#dataset)
 * [Data preprocessing](#data_preprocessing)
   * [The raw data](#the_raw_data)
-  * [\[c\] connectors](#c_connectors)
-  * [\[l\] list](#c_list)
-  * [\[r\] read](#c_read)
-  * [\[w\] write](#c_write)
-  * [\[d\] delete](#c_delete)
+  * [Sample](#sample)
+  * [Columns](#columns)
+  * [Convert wind Cardinal directions (string) to Degrees (float)](#wind)
+  * [Map the values 'Yes' and 'No' to 1 and 0](#boolean)
+  * [Sample](#sample)
+  * [Sample](#sample)
+  * [Sample](#sample)
 
+****
 
-<a name="intro"/>
+<a name="intro"/></a>
 ## Intro 
-<a name="goal"/>
+
+<a name="goal"/></a>
 ### Goal 🌦
 Implement an algorithm that performs **next day rain prediction** by training machine learning models on the target variable `RainTomorrow`.
 
-<a name="dataset"/>
+<a name="dataset"/></a>
 ### Dataset 📂
 The dataset contains about **10 years of daily weather observations** from various locations in **Australia**.
 
 **`RainTomorrow`** is the target variable to be  predicted. It means - it rained the next day, this column is `Yes` if the rain that day was 1mm or more.
 
-<a name="data_preprocessing"/>
+<a name="data_preprocessing"/></a>
 ## Data preprocessing 
-<a name="the_raw_data"/>
+
+<a name="the_raw_data"/></a>
 ### The raw data
 Available at: [./data/weatherAUS.csv](https://github.com/marlonrcfranco/weather-guru/blob/main/data/weatherAUS.csv)
 
+<a name="sample"/></a>
 ### Sample:
 
 <table border="1" class="dataframe">
@@ -113,6 +119,7 @@ Available at: [./data/weatherAUS.csv](https://github.com/marlonrcfranco/weather-
   </tbody>
 </table>
 
+<a name="columns"/></a>
 ### Columns:
 ```
 RangeIndex: 145460 entries, 0 to 145459
@@ -145,6 +152,7 @@ Data columns (total 23 columns):
 dtypes: float64(16), object(7)
 ```
 
+<a name="wind"/></a>
 ### Convert wind Cardinal directions (string) to Degrees (float)
 Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In order to make the dataset only with numbers, let's convert these directions into angles (degrees).
 
@@ -192,6 +200,7 @@ Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In o
   </tbody>
 </table>
 
+<a name="boolean"/></a>
 ### Map the values 'Yes' and 'No' to 1 and 0
 <div class=" highlight hl-python"><pre><span></span><span class="n">weather_df</span><span class="o">.</span><span class="n">RainToday</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">RainToday</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">Yes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">No</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">Yes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">No</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
