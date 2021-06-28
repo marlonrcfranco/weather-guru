@@ -229,6 +229,11 @@ In this step, we use the 'mean' strategy to fill the missing values of the featu
 </pre></div>
 
 
+### Correlation
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/marlonrcfranco/weather-guru/main/img/correlation_matrix.png">
+</p>
 
 
 
