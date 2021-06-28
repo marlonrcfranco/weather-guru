@@ -235,6 +235,53 @@ In this step, we use the 'mean' strategy to fill the missing values of the featu
   <img src="https://raw.githubusercontent.com/marlonrcfranco/weather-guru/main/img/correlation_matrix.png">
 </p>
 
+There are some correlation in the dataset. Enough to proceed with the work.
+
+## Feature engineering
+### Normalize features
+The MinMaxScaler puts the values between 0 and 1, which further improves the model performance.
+<div class=" highlight hl-python"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+
+### Split into input and outputs
+X = features
+
+Y = target
+
+<div class=" highlight hl-python"><pre><span></span><span class="n">target_col_idx</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">TARGET_NAME</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">values</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">target_col_idx</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">values</span><span class="p">[:,</span><span class="n">target_col_idx</span><span class="p">]</span>
+</pre></div>
+
+### Encode class values as integers¶
+<div class=" highlight hl-python"><pre><span></span><span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">encoded_Y</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+</pre></div>
+
+## Design the model
+We want to predict a boolean value ('Yes' or 'No') for the target variable RainTomorrow. In this case, we need to use a classification model, istead of a regression model, wich is used to predict real-world values (e.g. Rainfall).
+
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">create_model</span><span class="p">():</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'weather_guru'</span><span class="p">)</span>
+  <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">NEURONS_1</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="n">NUM_FEATURES</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'dense_1'</span><span class="p">))</span>
+  <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">NEURONS_2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'dense_2'</span><span class="p">))</span>
+  <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'sigmoid'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'output'</span><span class="p">))</span>
+  <span class="n">adam_optmz</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">LEARNING_RATE</span><span class="p">)</span>
+  <span class="c1"># Compile model</span>
+  <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">LOSS_FUNCTION</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">adam_optmz</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+  <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">estimators</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">estimators</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">'standardize'</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()))</span>
+<span class="n">estimators</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">'mlp'</span><span class="p">,</span> <span class="n">KerasClassifier</span><span class="p">(</span><span class="n">build_fn</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">,</span> <span class="n">epochs</span> <span class="o">=</span> <span class="n">EPOCHS</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">estimators</span><span class="p">)</span>
+</pre></div>
+
+
 
 
 `TODO: Describe here which techiniques were used and why.`
