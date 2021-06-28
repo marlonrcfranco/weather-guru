@@ -281,7 +281,19 @@ We want to predict a boolean value ('Yes' or 'No') for the target variable RainT
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">estimators</span><span class="p">)</span>
 </pre></div>
 
+## Train the model and validate it
+We use the cross validation score to measure the accuracy of our model.
+<div class=" highlight hl-python"><pre><span></span><span class="n">kfold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">K_FOLD_SPLITS</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
 
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">encoded_Y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kfold</span><span class="p">)</span>
+</pre></div>
 
+# Final Results
+**'Accuracy: 85.73% (0.12%)'**
 
-`TODO: Describe here which techiniques were used and why.`
+This is the final accuracy result of the model, after the Cross Validation Score.
+
+If necessary, we can change the model topology or configurations to try better accuracy scores.
+
