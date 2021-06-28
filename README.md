@@ -41,9 +41,9 @@
 * [Feature engineering](#feature_engineering)
   * [Normalize features](#norm)
   * [Split into input and outputs](#split)
-  * [Sample](#sample)
-  * [Sample](#sample)
-  * [Sample](#sample)
+  * [Encode class values as integers](#encode)
+* [Design the model](#design)
+  * [EPOCHS](#epochs)
   * [Sample](#sample)
   * [Sample](#sample)
   * [Sample](#sample)
@@ -311,12 +311,14 @@ Y = target
 <span class="n">Y</span> <span class="o">=</span> <span class="n">values</span><span class="p">[:,</span><span class="n">target_col_idx</span><span class="p">]</span>
 </pre></div>
 
+<a name="encode"/></a>
 ### Encode class values as integers
 <div class=" highlight hl-python"><pre><span></span><span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
 <span class="n">encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
 <span class="n">encoded_Y</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
 </pre></div>
 
+<a name="design"/></a>
 ## Design the model
 We want to predict a boolean value ('Yes' or 'No') for the target variable RainTomorrow. In this case, we need to use a **classification model**, istead of a **regression model**, which is used to predict real-world values (e.g. Rainfall).
 
@@ -337,6 +339,7 @@ We want to predict a boolean value ('Yes' or 'No') for the target variable RainT
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">estimators</span><span class="p">)</span>
 </pre></div>
 
+<a name="epochs"/></a>
 #### EPOCHS = 100
 The number of epochs is the number of complete passes through the training dataset.
 The number 100 is arbitrary, chosen to improve the model accuracy and training time.
