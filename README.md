@@ -249,6 +249,8 @@ X = features
 
 Y = target
 
+`TARGET_NAME = 'RainTomorrow'`
+
 <div class=" highlight hl-python"><pre><span></span><span class="n">target_col_idx</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">TARGET_NAME</span><span class="p">)</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">values</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">target_col_idx</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
@@ -262,7 +264,7 @@ Y = target
 </pre></div>
 
 ## Design the model
-We want to predict a boolean value ('Yes' or 'No') for the target variable RainTomorrow. In this case, we need to use a classification model, istead of a regression model, wich is used to predict real-world values (e.g. Rainfall).
+We want to predict a boolean value ('Yes' or 'No') for the target variable RainTomorrow. In this case, we need to use a **classification model**, istead of a **regression model**, which is used to predict real-world values (e.g. Rainfall).
 
 <div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">create_model</span><span class="p">():</span>
   <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'weather_guru'</span><span class="p">)</span>
@@ -280,6 +282,31 @@ We want to predict a boolean value ('Yes' or 'No') for the target variable RainT
 <span class="n">estimators</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">'mlp'</span><span class="p">,</span> <span class="n">KerasClassifier</span><span class="p">(</span><span class="n">build_fn</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">,</span> <span class="n">epochs</span> <span class="o">=</span> <span class="n">EPOCHS</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)))</span>
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">estimators</span><span class="p">)</span>
 </pre></div>
+
+**EPOCHS = 100**
+The number of epochs is the number of complete passes through the training dataset.
+The number 100 is arbitrary, chosen to improve the model accuracy and training time.
+
+**BATCH_SIZE = 1023**
+The size of a batch must be more than or equal to one and less than or equal to the number of samples in the training dataset.
+The number 1023 is also arbitrary, chosen to improve the model accuracy and training time.
+
+**K_FOLD_SPLITS = 5**
+The number of iterations used in the cross validation.
+The number 5 is arbitrary, chosen to reduce the time the validation takes. 
+
+**LOSS_FUNCTION = 'binary_crossentropy'**
+Binary cross entropy compares each of the predicted probabilities to actual class output which can be either 0 or 1.
+The loss function 'binary_crossentropy' was chosen since the target variable is binary.
+
+**LEARNING_RATE = 0.001**
+Learning rate used in the Adam optimizer. 
+The value of 0.001 is arbitrary, chosen by trial and error, evaluating the model's improvements.
+
+**NEURONS_1 = 27**
+**NEURONS_2 = 7**
+The number of neurons in the first and second hidden layers.
+The values 27 and 7 are arbitrary, chosen by trial and error, evaluating the model's improvements.
 
 ## Train the model and validate it
 We use the cross validation score to measure the accuracy of our model.
