@@ -20,7 +20,7 @@
   </a>
 </p>
 
-
+## Intro 
 ### Goal 🌦
 Implement an algorithm that performs **next day rain prediction** by training machine learning models on the target variable `RainTomorrow`.
 
@@ -30,10 +30,11 @@ The dataset contains about **10 years of daily weather observations** from vario
 
 **`RainTomorrow`** is the target variable to be  predicted. It means - it rained the next day, this column is `Yes` if the rain that day was 1mm or more.
 
-#### The raw data
+## Data preprocessing 
+### The raw data
 Available at: [./data/weatherAUS.csv](https://github.com/marlonrcfranco/weather-guru/blob/main/data/weatherAUS.csv)
 
-**Sample:**
+### Sample:
 
 <table border="1" class="dataframe">
   <thead>
@@ -94,7 +95,7 @@ Available at: [./data/weatherAUS.csv](https://github.com/marlonrcfranco/weather-
   </tbody>
 </table>
 
-**Columns:**
+### Columns:
 ```
 RangeIndex: 145460 entries, 0 to 145459
 Data columns (total 23 columns):
@@ -126,5 +127,51 @@ Data columns (total 23 columns):
 dtypes: float64(16), object(7)
 ```
 
+### Convert wind Cardinal directions (string) to Degrees (float)
+Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In order to make the dataset only with numbers, let's convert these directions into angles (degrees).
+
+#### Before:
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>WindGustDir</th>
+      <th>WindDir9am</th>
+      <th>WindDir3pm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>W</td>
+      <td>W</td>
+      <td>WNW</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><span></span><span class="n">weather_df</span><span class="p">[</span><span class="s1">'WindGustDir'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="p">[</span><span class="s1">'WindGustDir'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">portolan</span><span class="o">.</span><span class="n">middle</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">!=</span><span class="s1">'nan'</span> <span class="k">else</span> <span class="n">w</span><span class="p">)</span>
+<span class="n">weather_df</span><span class="p">[</span><span class="s1">'WindDir9am'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="p">[</span><span class="s1">'WindDir9am'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">portolan</span><span class="o">.</span><span class="n">middle</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">!=</span><span class="s1">'nan'</span> <span class="k">else</span> <span class="n">w</span><span class="p">)</span>
+<span class="n">weather_df</span><span class="p">[</span><span class="s1">'WindDir3pm'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="p">[</span><span class="s1">'WindDir3pm'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">portolan</span><span class="o">.</span><span class="n">middle</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">!=</span><span class="s1">'nan'</span> <span class="k">else</span> <span class="n">w</span><span class="p">)</span>
+</pre>
+#### After:
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>WindGustDir</th>
+      <th>WindDir9am</th>
+      <th>WindDir3pm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>270.0</td>
+      <td>270.0</td>
+      <td>292.5</td>
+    </tr>
+  </tbody>
+</table>
 
 `TODO: Describe here which techiniques were used and why.`
