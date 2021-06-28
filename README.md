@@ -257,7 +257,7 @@ Y = target
 <span class="n">Y</span> <span class="o">=</span> <span class="n">values</span><span class="p">[:,</span><span class="n">target_col_idx</span><span class="p">]</span>
 </pre></div>
 
-### Encode class values as integers¶
+### Encode class values as integers
 <div class=" highlight hl-python"><pre><span></span><span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
 <span class="n">encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
 <span class="n">encoded_Y</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
@@ -283,28 +283,28 @@ We want to predict a boolean value ('Yes' or 'No') for the target variable RainT
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">estimators</span><span class="p">)</span>
 </pre></div>
 
-**EPOCHS = 100**
+### EPOCHS = 100
 The number of epochs is the number of complete passes through the training dataset.
 The number 100 is arbitrary, chosen to improve the model accuracy and training time.
 
-**BATCH_SIZE = 1023**
+### BATCH_SIZE = 1023
 The size of a batch must be more than or equal to one and less than or equal to the number of samples in the training dataset.
 The number 1023 is also arbitrary, chosen to improve the model accuracy and training time.
 
-**K_FOLD_SPLITS = 5**
+### K_FOLD_SPLITS = 5
 The number of iterations used in the cross validation.
 The number 5 is arbitrary, chosen to reduce the time the validation takes. 
 
-**LOSS_FUNCTION = 'binary_crossentropy'**
+### LOSS_FUNCTION = 'binary_crossentropy'
 Binary cross entropy compares each of the predicted probabilities to actual class output which can be either 0 or 1.
 The loss function 'binary_crossentropy' was chosen since the target variable is binary.
 
-**LEARNING_RATE = 0.001**
-Learning rate used in the Adam optimizer. 
+### LEARNING_RATE = 0.001
+Learning rate used in the Adam optimizer.
 The value of 0.001 is arbitrary, chosen by trial and error, evaluating the model's improvements.
 
-**NEURONS_1 = 27**
-**NEURONS_2 = 7**
+### NEURONS_1 = 27 
+### NEURONS_2 = 7
 The number of neurons in the first and second hidden layers.
 The values 27 and 7 are arbitrary, chosen by trial and error, evaluating the model's improvements.
 
