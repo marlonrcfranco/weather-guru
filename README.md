@@ -227,7 +227,7 @@ Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In o
 
 <a name="date"/></a>
 ### Split the Date into year, month and day columns
-In order to catch ciclic behaviours, we can feed the model with the day, month and year separately and allow it to perceive patterns related to seasons, for example.
+In order to catch cyclic behaviors, we can feed the model with the day, month and year separately and allow it to perceive patterns related to seasons, for example.
 
 <div class=" highlight hl-python"><pre><span></span><span class="n">weather_df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
 <span class="n">weather_df</span><span class="p">[</span><span class="s1">'month'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
@@ -240,7 +240,7 @@ The 'Location' column contains `string` values with the name of the location whe
 In order to convert the locations into numbers, we can use the coordinates for each one. 
 With this aproach, the column 'Location' becomes three new columns: **latitude**, **longitude** and **altitude** (all in decimal degrees).
 
-Example: location `Albury` becomes latitude `-36.0804766`, lngitude `146.9162795` and altitude `0.0`.
+Example: location `Albury` becomes latitude `-36.0804766`, longitude `146.9162795` and altitude `0.0`.
 
 **We could also plot the map of all the locations in the dataset, with its respective rainfall per day:**
 
@@ -397,7 +397,7 @@ See details of the training in the notebook:
 # Final Results
 **'Accuracy: 85.73% (0.12%)'**
 
-This is the final accuracy result of the model, after the Cross Validation Score.
+This is the final **result of model accuracy**, after cross-validation scoring.
 
-If necessary, we can change the model topology or configurations to try better accuracy scores.
+If necessary, we can change the topology or model settings to try to achieve better accuracy values.
 
