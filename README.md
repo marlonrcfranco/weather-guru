@@ -50,7 +50,7 @@
   * [LEARNING_RATE](#LEARNING_RATE)
   * [NEURONS_1](#NEURONS_1)
   * [NEURONS_2](#NEURONS_2)
-* [🥵 Train the model and validate it](#train)
+* [🕖 Train the model and validate it](#train)
 * [🏆 Final Results](#result)
 
 
@@ -379,7 +379,7 @@ The number of neurons in the first hidden layer.
 The values 7 was chosen to 'force' the model to choose the most relevant features
 
 <a name="train"/></a>
-## 🥵 Train the model and validate it
+## 🕖 Train the model and validate it
 We use the cross validation score to measure the accuracy of our model.
 <div class=" highlight hl-python"><pre><span></span><span class="n">kfold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">K_FOLD_SPLITS</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
