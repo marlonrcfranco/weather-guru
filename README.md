@@ -43,11 +43,17 @@
   * [Split into input and outputs](#split)
   * [Encode class values as integers](#encode)
 * [Design the model](#design)
-  * [EPOCHS](#epochs)
+  * [EPOCHS](#EPOCHS)
+  * [BATCH_SIZE](#BATCH_SIZE)
+  * [K_FOLD_SPLITS](#K_FOLD_SPLITS)
+  * [LOSS_FUNCTION](#LOSS_FUNCTION)
+  * [LEARNING_RATE](#LEARNING_RATE)
+  * [NEURONS_1](#NEURONS_1)
+  * [NEURONS_2](#NEURONS_2)
   * [Sample](#sample)
   * [Sample](#sample)
   * [Sample](#sample)
-  * [Sample](#sample)
+  * 
   * 
 
 ****
@@ -339,25 +345,37 @@ We want to predict a boolean value ('Yes' or 'No') for the target variable RainT
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">estimators</span><span class="p">)</span>
 </pre></div>
 
-<a name="epochs"/></a>
+<a name="EPOCHS"/></a>
 #### EPOCHS = 100
 The number of epochs is the number of complete passes through the training dataset.
 The number 100 is arbitrary, chosen to improve the model accuracy and training time.
+
+<a name="BATCH_SIZE"/></a>
 #### BATCH_SIZE = 1023
 The size of a batch must be more than or equal to one and less than or equal to the number of samples in the training dataset.
 The number 1023 is also arbitrary, chosen to improve the model accuracy and training time.
+
+<a name="K_FOLD_SPLITS"/></a>
 #### K_FOLD_SPLITS = 5
 The number of iterations used in the cross validation.
 The number 5 is arbitrary, chosen to reduce the time the validation takes. 
+
+<a name="LOSS_FUNCTION"/></a>
 #### LOSS_FUNCTION = 'binary_crossentropy'
 Binary cross entropy compares each of the predicted probabilities to actual class output which can be either 0 or 1.
 The loss function 'binary_crossentropy' was chosen since the target variable is binary.
+
+<a name="LEARNING_RATE"/></a>
 #### LEARNING_RATE = 0.001
 Learning rate used in the Adam optimizer.
 The value of 0.001 is arbitrary, chosen by trial and error, evaluating the model's improvements.
+
+<a name="NEURONS_1"/></a>
 #### NEURONS_1 = 27 
 The number of neurons in the first hidden layer. 
 The values 27 is arbitrary, chosen by trial and error, evaluating the model's improvements.
+
+<a name="NEURONS_2"/></a>
 #### NEURONS_2 = 7
 The number of neurons in the first hidden layer. 
 The values 7 was chosen to 'force' the model to choose the most relevant features
