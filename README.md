@@ -12,7 +12,7 @@
 ![Jupyter](https://img.shields.io/badge/Jupyter%20-%23F37626.svg?&style=flat-square&logo=Jupyter&logoColor=white)
 
 # weather-guru
-Will it rain tomorrow?
+### Will it rain tomorrow?
 
 <p align="center">
   <a href="https://colab.research.google.com/github/marlonrcfranco/weather-guru/blob/main/weather_guru.ipynb">
@@ -31,6 +31,70 @@ The dataset contains about **10 years of daily weather observations** from vario
 **`RainTomorrow`** is the target variable to be  predicted. It means - it rained the next day, this column is `Yes` if the rain that day was 1mm or more.
 
 #### The raw data
+Available at: [./data/weatherAUS.csv](https://github.com/marlonrcfranco/weather-guru/blob/main/data/weatherAUS.csv)
+
+**Sample:**
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustDir</th>
+      <th>WindGustSpeed</th>
+      <th>WindDir9am</th>
+      <th>WindDir3pm</th>
+      <th>WindSpeed9am</th>
+      <th>WindSpeed3pm</th>
+      <th>Humidity9am</th>
+      <th>Humidity3pm</th>
+      <th>Pressure9am</th>
+      <th>Pressure3pm</th>
+      <th>Cloud9am</th>
+      <th>Cloud3pm</th>
+      <th>Temp9am</th>
+      <th>Temp3pm</th>
+      <th>RainToday</th>
+      <th>RainTomorrow</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>99612</th>
+      <td>2009-03-10</td>
+      <td>MountGambier</td>
+      <td>12.0</td>
+      <td>27.6</td>
+      <td>0.0</td>
+      <td>4.2</td>
+      <td>4.9</td>
+      <td>E</td>
+      <td>37.0</td>
+      <td>ESE</td>
+      <td>ESE</td>
+      <td>20.0</td>
+      <td>11.0</td>
+      <td>82.0</td>
+      <td>36.0</td>
+      <td>1020.5</td>
+      <td>1017.5</td>
+      <td>7.0</td>
+      <td>6.0</td>
+      <td>16.5</td>
+      <td>27.3</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+
+**Columns:**
 ```
 RangeIndex: 145460 entries, 0 to 145459
 Data columns (total 23 columns):
