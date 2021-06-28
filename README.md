@@ -20,17 +20,35 @@
   </a>
 </p>
 
+# Table of Contents
+
+* [Intro](#intro)
+  * [Goal](#goal)
+  * [Dataset](#dataset)
+* [Data preprocessing](#data_preprocessing)
+  * [The raw data](#the_raw_data)
+  * [\[c\] connectors](#c_connectors)
+  * [\[l\] list](#c_list)
+  * [\[r\] read](#c_read)
+  * [\[w\] write](#c_write)
+  * [\[d\] delete](#c_delete)
+
+
+<a name="intro"/>
 ## Intro 
+<a name="goal"/>
 ### Goal 🌦
 Implement an algorithm that performs **next day rain prediction** by training machine learning models on the target variable `RainTomorrow`.
 
-
+<a name="dataset"/>
 ### Dataset 📂
 The dataset contains about **10 years of daily weather observations** from various locations in **Australia**.
 
 **`RainTomorrow`** is the target variable to be  predicted. It means - it rained the next day, this column is `Yes` if the rain that day was 1mm or more.
 
+<a name="data_preprocessing"/>
 ## Data preprocessing 
+<a name="the_raw_data"/>
 ### The raw data
 Available at: [./data/weatherAUS.csv](https://github.com/marlonrcfranco/weather-guru/blob/main/data/weatherAUS.csv)
 
