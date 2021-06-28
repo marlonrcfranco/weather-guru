@@ -179,7 +179,7 @@ Wind directions are represented in Cardinal directions (e.g. N, S, SW,...). In o
 <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">RainTomorrow</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">Yes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">No</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 
-### Add YEAR, MONTH and DAY columns based on column 'Date'
+### Split the Date into year, month and day columns
 In order to catch ciclic behaviours, we can feed the model with the day, month and year separately and allow it to perceive patterns related to seasons, for example.
 
 <div class=" highlight hl-python"><pre><span></span><span class="n">weather_df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
@@ -199,6 +199,34 @@ Example: location `Albury` becomes latitude `-36.0804766`, lngitude `146.9162795
   <img src="https://raw.githubusercontent.com/marlonrcfranco/weather-guru/main/img/aus_rain_observations.png">
 </p>
 
+## Data Cleaning
+### Remove rows with null values in the target column
+If there's no value in the target column, we cannot use it into our training or test set. So we can remove those rows from the dataset.
+
+<pre>Before:
+  Unique values in the RainTomorrow column:  &lt;IntegerArray&gt;
+[0, 1, &lt;NA&gt;]
+Length: 3, dtype: Int64
+ Total number of rows: [ 145460 ]
+
+After:
+  Unique values in the RainTomorrow column:  &lt;IntegerArray&gt;
+[0, 1]
+Length: 2, dtype: Int64
+ Total number of rows: [ 142193 ] ( 3267  rows removed )
+</pre>
+
+### Filling missing values
+In this step, we use the 'mean' strategy to fill the missing values of the features.
+
+<div class=" highlight hl-python"><pre><span></span><span class="n">imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">'mean'</span><span class="p">)</span>
+<span class="c1"># transform the dataset</span>
+<span class="n">weather_df_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">weather_df</span><span class="p">))</span>
+<span class="n">weather_df_transformed</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">weather_df_transformed</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">weather_df</span><span class="o">.</span><span class="n">index</span>
+
+<span class="n">weather_df</span> <span class="o">=</span> <span class="n">weather_df_transformed</span>
+</pre></div>
 
 
 
