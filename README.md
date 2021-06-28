@@ -22,10 +22,10 @@
 
 ****
 
-* [Intro](#intro)
+* [🌦 Intro](#intro)
   * [Goal](#goal)
   * [Dataset](#dataset)
-* [Data preprocessing](#data_preprocessing)
+* [📂 Data preprocessing](#data_preprocessing)
   * [The raw data](#the_raw_data)
   * [Sample](#sample)
   * [Columns](#columns)
@@ -33,12 +33,12 @@
   * [Map the values 'Yes' and 'No' to 1 and 0](#boolean)
   * [Split the Date into year, month and day columns](#date)
   * [Add latitude and longitude columns based on column 'Location'](#lat)
-    * [Map of all locations in the dataset](#map) 
-* [Data Cleaning](#data_cleaning)
+    * [🗺️ Map of all locations in the dataset](#map) 
+* [🧹 Data Cleaning](#data_cleaning)
   * [Remove rows with null values in the target column](#null_target)
   * [Filling missing values](#fill)
   * [Correlation](#correlation)
-* [Feature engineering](#feature_engineering)
+* [📐 Feature engineering](#feature_engineering)
   * [Normalize features](#norm)
   * [Split into input and outputs](#split)
   * [Encode class values as integers](#encode)
@@ -57,20 +57,20 @@
 ****
 
 <a name="intro"/></a>
-## Intro 
+## 🌦 Intro 
 
 <a name="goal"/></a>
-### Goal 🌦
+### Goal
 Implement an algorithm that performs **next day rain prediction** by training machine learning models on the target variable `RainTomorrow`.
 
 <a name="dataset"/></a>
-### Dataset 📂
+### Dataset
 The dataset contains about **10 years of daily weather observations** from various locations in **Australia**.
 
 **`RainTomorrow`** is the target variable to be  predicted. It means - it rained the next day, this column is `Yes` if the rain that day was 1mm or more.
 
 <a name="data_preprocessing"/></a>
-## Data preprocessing 
+## 📂 Data preprocessing 
 
 <a name="the_raw_data"/></a>
 ### The raw data
@@ -250,7 +250,7 @@ Example: location `Albury` becomes latitude `-36.0804766`, lngitude `146.9162795
 </p>
 
 <a name="data_cleaning"/></a>
-## Data Cleaning
+## 🧹 Data Cleaning
 
 <a name="null_target"/></a>
 ### Remove rows with null values in the target column
@@ -292,7 +292,7 @@ In this step, we use the 'mean' strategy to fill the missing values of the featu
 There are some correlation in the dataset. Enough to proceed with the work.
 
 <a name="feature_engineering"/></a>
-## Feature engineering
+## 📐 Feature engineering
 
 <a name="norm"/></a>
 ### Normalize features
